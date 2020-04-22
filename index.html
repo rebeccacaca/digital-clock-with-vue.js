@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Vue.js</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.font.im/css?family=Share+Tech+Mono" rel="stylesheet">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="clock">
+        <p class="date">{{date}}</p>
+        <p class="time">{{time}}</p>
+        <p class="text">Digital Clock with Vue.js</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#clock',
+            data: {
+                time: '',
+                date: ''
+            }
+        });
+        let week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        setInterval(updateTime, 1000);
+        updateTime(); // 如果没有这句话，刚打开浏览器的时候是不显示时间的
+        function updateTime() {
+            var cd = new Date(); // current date: Tue Apr 21 2020 17:33:56 GMT+0800 (中国标准时间)
+            vm.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+            vm.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth()+1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()]; // getDay()获得的是数字
+        }
+
+        function zeroPadding(num, digit) {
+            let zero = '';
+            for(let i = 0; i < digit; i++) {
+                zero += '0';
+            }
+            // 如果位数不够就在前面补0
+            return (zero + num).slice(-digit);
+
+        }
+    </script>
+</body>
+</html>
