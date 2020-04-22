@@ -5,6 +5,8 @@
 * 安装 Sass `npm install -g node-sass`
 * 了解JS Date对象 [我的笔记参考](https://www.notion.so/Day-13-Date-f6918eaeb1d7449588b8edf825d13ba7)
 
+![效果展示](show.jpg)
+
 这个项目涉及到的常见面试题是：如何让一个div元素水平垂直都居中？做法如下
 ```html
 <body>
